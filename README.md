@@ -1,6 +1,43 @@
-# Getting Started with Create React App
+# Michelle 14
+This is a React TS experimental web application. The project was named after Michelle (14) a volleyball player of the US national team. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [npx create-reactapp michelle14 --template typescript ](https://create-react-app.dev/docs/adding-typescript).
+The next step is to enable [ESLint[(https://andrebnassis.medium.com/setting-eslint-on-a-react-typescript-project-2021-1190a43ffba)] for the project to be able to execute
+fixing sigle quotes and trailing semicolons.
+- **npm install eslint --save-dev** 
+- **npx eslint --init** to get **.eslintrc.json**
+- Install and enable ESLint extension. Be patient, when you change .eslintrc.json, if the file is open, sometimes, it may not immediately recognize the rules added, remember that most rules has **@typescript-eslint** prefix. 
+These are the rules I can live with:
+```
+    "overrides": [
+        {
+          // enable the rule specifically for TypeScript files
+          "files": ["*.ts", "*.tsx"],
+          "rules": {
+            "@typescript-eslint/explicit-module-boundary-types": ["warn", {"allowArgumentsExplicitlyTypedAsAny":true}],
+            "@typescript-eslint/no-explicit-any":"warn",
+            "quotes": ["error","double",{ "allowTemplateLiterals": true } ],
+            "@typescript-eslint/semi": ["error", "never"]
+          }
+        }
+      ]
+```
+
+Two scripts were added to package.json:
+- "lint" : "npx eslint src/" run it as **npm run lint**
+- "fix" : "npx eslint src/ --fix" for **npm run fix**
+Both works recursively under the src folders nicely.
+
+The sample code in App.tsx
+```
+import React from "react"
+enum TGender {male = "M",female="F"}
+export const App = ():JSX.Element => <p>The Female code is {TGender.female}</p>
+```
+demonstrates that JSX/TSX is brutally flexible, even TypScript enums are allowed.
+
+[Stefan Baumgartner's TypeScript and React](https://fettblog.eu/typescript-react/) is brutally elegant and in itself it is a reason to pick React. Read his articles before doing anything in React.
+[Jeff Herrington YouTube Channel](https://www.youtube.com/watch?v=Cos-ctPX5hw)  has Tons of Great Information
 
 ## Available Scripts
 
