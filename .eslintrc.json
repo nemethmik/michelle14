@@ -22,6 +22,7 @@
     ],
     "rules": {
     },
+    "ignorePatterns": ["/build/*"],
     "overrides": [
         {
           // enable the rule specifically for TypeScript files
@@ -30,7 +31,8 @@
             "@typescript-eslint/explicit-module-boundary-types": ["warn", {"allowArgumentsExplicitlyTypedAsAny":true}],
             "@typescript-eslint/no-explicit-any":"warn",
             "quotes": ["error","double",{ "allowTemplateLiterals": true } ],
-            "@typescript-eslint/semi": ["error", "never"]
+            "@typescript-eslint/semi": ["error", "never"],
+            "@typescript-eslint/ban-ts-comment":"allow-with-description"
           }
         }
       ]

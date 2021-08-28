@@ -1,0 +1,45 @@
+{
+  "name": "michelle14",
+  "version": "1.0.0",
+  "description": "A React TS mobile application for manufacturing and warehousing businesses",
+  "main": "index.js",
+  "scripts": {
+    "start": "snowpack dev",
+    "build": "snowpack build",
+    "lint": "eslint .",
+    "fix": "eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nemethmik/michelle14.git"
+  },
+  "keywords": [
+    "Reast",
+    "TypeScript",
+    "Snowpack"
+  ],
+  "author": "Miklos Nemeth",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nemethmik/michelle14/issues"
+  },
+  "homepage": "https://github.com/nemethmik/michelle14#readme",
+  "devDependencies": {
+    "@snowpack/plugin-typescript": "^1.2.1",
+    "@types/node": "^16.7.4",
+    "@types/react": "^17.0.19",
+    "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.24.0",
+    "snowpack": "^3.8.8",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "bootstrap": "^5.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

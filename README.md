@@ -1,16 +1,35 @@
 # Michelle 14
 This is a React TS experimental web application. The project was named after [Michelle Bartsch-Hackley](https://youtu.be/p7bvtVlCeAg) (number 14) a volleyball player of the US national team. 
 
-Instead of [CRA](https://create-react-app.dev/docs/adding-typescript), the project was initialized from scratch following 
-[Creating A React App From Scratch Using Snowpack](https://youtu.be/QAwW0E9BXKc)
+The project was initialized from scratch following [Snowpack Getting Started](https://www.snowpack.dev/tutorials/getting-started)
+[Almost no config Snowpack + React + TS](https://dev.to/kojikanao/almost-no-config-snowpack-react-ts-5aac) is quite useful, too.
+A Snowpack React/Typescript project could be created with [npx create-snowpack-app michelle14sp --template @snowpack/app-template-react-typescript](https://github.com/snowpackjs/snowpack/tree/main/create-snowpack-app/cli) too; see [Creating a TypeScript React application using Snowpack](https://youtu.be/gjFDiaR3P5w).
+
+After installing the runtime packages and development tools,
+I created a minimal *index.html* with Visual Studio Code's ! emmet macro.
+I added the root element for React machinery, and added the script module
+`<script type="module" src="index.js"></script>` importing *index.js*, since
+*index.tsx* compiles to index.js. 
+TS and TSX transpilation support is included in Snowpack, no need for any configuration.
+But, this embedded TS support simply removes types but gives no error messages. Visual Studio Code with *tsconfig.json* gives errors but not the *snowpack dev*
+So, to get compilation errors from snowpack dev server, too, [@snowpack/plugin-typescript](https://www.npmjs.com/package/@snowpack/plugin-typescript) has to be installed and configured as plugin.
 
 Other useful sources to learn and reference:
 - [Stefan Baumgartner's TypeScript and React](https://fettblog.eu/typescript-react/) is brutally elegant and in itself it is a reason to pick React. Read his articles before doing anything in React.
 - [Jeff Herrington YouTube Channel](https://www.youtube.com/watch?v=Cos-ctPX5hw)  has Tons of Great Information
 
-The next step is to enable [ESLint[(https://andrebnassis.medium.com/setting-eslint-on-a-react-typescript-project-2021-1190a43ffba)] for the project to be able to execute
+## Project Initialization Steps
+- **npm init** to create package.json
+- **npm i bootstrap react react-dom** to install the React runtime libraries
+- **npm i -D snowpack @snowpack/plugin-typescript typescript @types/node @types/react @types/react-dom** to install the development tools.
+- **npx tsc --init** to create *tsconfig.json*
+- **npx snowpack init** to create *snowpack.config.js* Add @snowpack/plugin-typescript to the plugin
+section in snowpack.config.js like so `plugins: ["@snowpack/plugin-typescript"],` This will add compilation typechecking to the dev server.
+This is the reason *create-snowpack-app --template @snowpack/app-template-react-typescript* automatically installs and enables the typescript plugin. 
+
+The next step is to enable [ESLint](https://andrebnassis.medium.com/setting-eslint-on-a-react-typescript-project-2021-1190a43ffba) for the project to be able to execute
 fixing sigle quotes and trailing semicolons.
-- **npm install eslint --save-dev** 
+- **npm i -D eslint eslint-plugin-react @typescript-eslint/eslint-plugin @typescript-eslint/parser** 
 - **npx eslint --init** to get **.eslintrc.json**
 - Install and enable ESLint extension. Be patient, when you change .eslintrc.json, if the file is open, sometimes, it may not immediately recognize the rules added, remember that most rules has **@typescript-eslint** prefix. 
 These are the rules I can live with:
@@ -28,40 +47,11 @@ These are the rules I can live with:
         }
       ]
 ```
+You can use either *.eslintignore* to exclude the *build* folder created by snowpack build command or
+`"ignorePatterns": ["/build/*"],` in *.eslintrc.json*
 
 Two scripts were added to package.json:
 - "lint" : "npx eslint src/" run it as **npm run lint**
 - "fix" : "npx eslint src/ --fix" for **npm run fix**
 Both works recursively under the src folders nicely.
 
-These are the dependencies CRA created:
-```
-{
-  "name": "michelle14",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^12.20.16",
-    "@types/react": "^17.0.14",
-    "@types/react-dom": "^17.0.9",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.3.5"
-  },
-  "scripts": {
-    "lint" : "npx eslint src/",
-    "fix" : "npx eslint src/ --fix"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.28.2",
-    "@typescript-eslint/parser": "^4.28.2",
-    "eslint": "^7.30.0",
-    "eslint-plugin-react": "^7.24.0"
-  }
-}
-```
